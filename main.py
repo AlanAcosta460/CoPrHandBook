@@ -20,7 +20,7 @@ def get_files(directory):
     return file_names
 
 def append_tex(doc_file, title, description, text):
-    doc_file.write(f'\\subsubsection*{{{title}}}\n')
+    doc_file.write(f'\\subsubsection{{{title}}}\n')
     doc_file.write(f'{description}\n')
     doc_file.write('\\begin{lstlisting}')
     for line in text[1:]:
@@ -75,9 +75,6 @@ def main():
 
                         append_tex(doc_file, title, description, text)
                 
-                
-            
-        
 if __name__ == '__main__':
     main()
- 
+    print('test')
