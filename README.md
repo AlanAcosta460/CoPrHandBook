@@ -8,6 +8,7 @@ For more detailed explanations of these algorithms, please visit [Algorithms for
 
 <div>
   <img align="left" src="https://static.wixstatic.com/media/088799_2ff03e2c9a2c4cdf94e4dca464d5cfa8~mv2.png" alt= "image" width='350'/>
+  
   <img align="right" src="https://ieeextreme.org/wp-content/uploads/2023/02/ieeextreme_logo_general.png" alt="image" width='350'/>
 </div>
 
