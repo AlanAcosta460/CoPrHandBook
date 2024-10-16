@@ -6,12 +6,9 @@ For more detailed explanations of these algorithms, please visit [Algorithms for
 
 [Here](./Tex/build/main.pdf) you can view and download the whole pdf.
 
-<div style="clear: both; margin-bottom: 1cm;">
-  <img style="float: left; margin-right: 1cm;" src="https://static.wixstatic.com/media/088799_2ff03e2c9a2c4cdf94e4dca464d5cfa8~mv2.png" alt="image" width="350"/>
-</div>
-
-<div style="clear: both; margin-bottom: 1cm;">
-  <img style="float: right; margin-left: 1cm;" src="https://ieeextreme.org/wp-content/uploads/2023/02/ieeextreme_logo_general.png" alt="image" width="350"/>
+<div style="display: flex; justify-content: space-between; margin-bottom: 1cm;">
+  <img src="https://static.wixstatic.com/media/088799_2ff03e2c9a2c4cdf94e4dca464d5cfa8~mv2.png" alt="image" width="350"/>
+  <img src="https://ieeextreme.org/wp-content/uploads/2023/02/ieeextreme_logo_general.png" alt="image" width="350"/>
 </div>
 
 ---
