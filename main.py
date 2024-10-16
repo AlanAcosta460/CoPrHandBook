@@ -1,8 +1,11 @@
 import os
 import re
 
-themes = ('Algebra', 'Data Structures', 'Dynamic Programming', 'String Processing', 'Linear Algebra', 'Combinatorics', 'Numerical Methods', 'Graphs', 'Miscellaneous')
+themes = ('Algebra', 'DataStructures', 'DynamicProgramming', 'StringProcessing', 'LinearAlgebra', 'Combinatorics', 'NumericalMethods', 'Graphs', 'Miscellaneous')
 doc_path = './Tex/handBook.tex'
+
+def separete_name(name):
+    return re.sub(r'([a-z])([A-Z])', r'\1 \2', name)
 
 def read_index(file):
     index = {}
@@ -54,20 +57,20 @@ def main():
         path_theme = main_directory + theme_name + '/'
 
         with open(doc_path, 'a', encoding='utf-8') as doc_file:
-            doc_file.write(f'\\section{{{theme_name}}}\n')
+            doc_file.write(f'\\section{{{separete_name(theme_name)}}}\n')
         
         index_theme = read_index(path_theme + 'index.md')
 
         for number, (name, file) in sorted(index_theme.items()):
             with open(doc_path, 'a', encoding='utf-8') as doc_file:
-                doc_file.write(f'\\subsection{{{name}}}\n')
+                doc_file.write(f'\\subsection{{{separete_name(name)}}}\n')
             
             path_subtheme = path_theme + file[1:]
             index_subtheme = read_index(path_subtheme + 'index.md')
 
             for number, (name, file) in sorted(index_subtheme.items()):
                 with open(doc_path, 'a', encoding='utf-8') as doc_file:
-                    doc_file.write(f'\\subsubsection{{{name}}}\n')
+                    doc_file.write(f'\\subsubsection{{{separete_name(name)}}}\n')
 
                 path_subsubtheme = path_subtheme + file
                 description, text = extract_content(path_subsubtheme)
