@@ -11,6 +11,8 @@ For more detailed explanations of these algorithms, please visit [Algorithms for
   <img align="right" src="https://ieeextreme.org/wp-content/uploads/2023/02/ieeextreme_logo_general.png" alt="image" width='350'/>
 </div>
 
+---
+
 # Index
 
 1. [Template](./Algorithms/Template/1_template.cpp)
