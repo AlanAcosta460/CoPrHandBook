@@ -1,4 +1,4 @@
-// Template in C++ // Basic template using universal library and FASTIO
+// Basic template using universal library and FASTIO
 
 #include <bits/stdc++.h>
 using namespace std;

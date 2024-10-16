@@ -1,79 +1,78 @@
 import os
+import re
 
-def get_dirs(directory):
-    dir_names = {}
-    for name in os.listdir(directory):
-        if os.path.isdir(os.path.join(directory, name)):
-            name = name.split('_', 1)
-            dir_number = int(name[0])
-            dir_name = name[1]
-            dir_names[dir_number] = dir_name
-    return dir_names
+themes = ('Algebra', 'Data Structures', 'Dynamic Programming', 'String Processing', 'Linear Algebra', 'Combinatorics', 'Numerical Methods', 'Graphs', 'Miscellaneous')
+doc_path = './Tex/handBook.tex'
 
-def get_files(directory):
-    file_names = {}
-    for name in os.listdir(directory):
-        name = name.split('_', 1)
-        file_number = int(name[0])
-        file_name = name[1]
-        file_names[file_number] = file_name
-    return file_names
+def read_index(file):
+    index = {}
+    with open(file, 'r', encoding='utf-8') as f:
+        text = f.readlines()
 
-def append_tex(doc_file, title, description, text):
-    doc_file.write(f'\\subsubsection{{{title}}}\n')
-    doc_file.write(f'{description}\n')
-    doc_file.write('\\begin{lstlisting}')
     for line in text[1:]:
-        doc_file.write(f'{line}')
-    doc_file.write('\\end{lstlisting}\n\n')
+        match = re.search(r'(\d+)\.\s*\[(.*?)\]\((.*?)\)', line)
+        if match:
+            number = match.group(1)
+            name = match.group(2)
+            path = match.group(3)
+            index[number] = (name, path)
+
+    return index
+
+def extract_content(file):
+    with open(file, 'r', encoding='utf-8') as f:
+        text = f.readlines()
+
+    description = text[0].split('// ', 1)[1]
+
+    return description, text
+
+def append_code(description, text):
+    with open(doc_path, 'a', encoding='utf-8') as doc_file:
+        doc_file.write(f'{description}\n')
+        doc_file.write('\\begin{lstlisting}')
+        for line in text[1:]:
+            doc_file.write(f'{line}')
+        doc_file.write('\\end{lstlisting}\n\n')
+
 
 def main():
-    doc_path = './Tex/handBook.tex'
-    
     main_directory = './Algorithms/'
-    sec_names = get_dirs(main_directory)
 
-    with open(doc_path, 'w', encoding='utf-8') as doc_file:
-        for number, name in sorted(sec_names.items()):
-            sub_directory = main_directory + str(number) + '_' + name + '/'
+    with open(doc_path, 'w', encoding='utf-8'):
+        pass
+    
+    template = './Algorithms/Template/template.cpp'
+    description, text = extract_content(template)
 
-            doc_file.write(f'\\section{{{name}}}\n')
+    with open(doc_path, 'a', encoding='utf-8') as doc_file:
+        doc_file.write('\\section{Template}\n')
 
-            subsec_names = get_dirs(sub_directory)
+    append_code(description, text)
 
-            if not subsec_names:
-                subsec_names = get_files(sub_directory)
+    for theme_name in themes:
+        path_theme = main_directory + theme_name + '/'
 
-                for number, name in sorted(subsec_names.items()):
-                    file = sub_directory + str(number) + '_' + name
-                    
-                    with open(file, 'r', encoding='utf-8') as f:
-                        text = f.readlines()
+        with open(doc_path, 'a', encoding='utf-8') as doc_file:
+            doc_file.write(f'\\section{{{theme_name}}}\n')
+        
+        index_theme = read_index(path_theme + 'index.md')
 
-                    preamble = text[0].split('// ', 2)
-                    title = preamble[1]
-                    description = preamble[2]
+        for number, (name, file) in sorted(index_theme.items()):
+            with open(doc_path, 'a', encoding='utf-8') as doc_file:
+                doc_file.write(f'\\subsection{{{name}}}\n')
+            
+            path_subtheme = path_theme + file[1:]
+            index_subtheme = read_index(path_subtheme + 'index.md')
 
-                    append_tex(doc_file, title, description, text)
-            else: 
-                for number, name in sorted(subsec_names.items()):
-                    subsub_directory = sub_directory + str(number) + '_' + name + '/'
+            for number, (name, file) in sorted(index_subtheme.items()):
+                with open(doc_path, 'a', encoding='utf-8') as doc_file:
+                    doc_file.write(f'\\subsubsection{{{name}}}\n')
 
-                    doc_file.write(f'\\subsection{{{name}}}\n')
+                path_subsubtheme = path_subtheme + file
+                description, text = extract_content(path_subsubtheme)
 
-                    subsubsec_names = get_files(subsub_directory)
-
-                    for number, name in sorted(subsubsec_names.items()):
-                        file = subsub_directory + str(number) + '_' + name
-                        
-                        with open(file, 'r', encoding='utf-8') as f:
-                            text = f.readlines()
-
-                        preamble = text[0].split('// ', 2)
-                        title = preamble[1]
-                        description = preamble[2]
-
-                        append_tex(doc_file, title, description, text)
+                append_code(description, text)
                 
 if __name__ == '__main__':
     main()
