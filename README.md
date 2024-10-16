@@ -4,7 +4,7 @@ This handbook is a compilation of some of the most essential algorithms used in 
 
 For more detailed explanations of these algorithms, please visit [https://cp-algorithms.com/](Algorithms for Competitive Programming).
 
-[https://github.com/AlanAcosta460/CoPrHandBook/blob/main/Tex/build/main.pdf](Here) you can dowload the whole pdf.
+[Here](https://github.com/AlanAcosta460/CoPrHandBook/blob/main/Tex/build/main.pdf) you can dowload the whole pdf.
 
 <div>
   <img align="left" src="https://static.wixstatic.com/media/088799_2ff03e2c9a2c4cdf94e4dca464d5cfa8~mv2.png" alt= "image" width='400'/>
