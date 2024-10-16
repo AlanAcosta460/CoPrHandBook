@@ -15,7 +15,7 @@ For more detailed explanations of these algorithms, please visit [Algorithms for
 
 # Index
 
-1. [Template](./Algorithms/Template/1_template.cpp)
+1. [Template](./Algorithms/Template/template.cpp)
 2. [Algebra](./Algorithms/Algebra/index.md) 
 3. [Data Structures](./Algorithms/DataStructures/index.md)
 4. [Dynamic Programming](./Algorithms/DynamicProgramming/index.md)
