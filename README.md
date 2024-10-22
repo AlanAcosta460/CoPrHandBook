@@ -13,7 +13,7 @@ For more detailed explanations of these algorithms, please visit [Algorithms for
 
 ---
 
-# Index
+## Index
 
 1. [Template](./Algorithms/Template/template.cpp)
 2. [Algebra](./Algorithms/Algebra/index.md) 

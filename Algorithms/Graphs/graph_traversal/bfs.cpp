@@ -1,38 +1,9 @@
-\section{Template}
-Basic template using universal library and FASTIO.
-
-\begin{lstlisting}
-#include <bits/stdc++.h>
-using namespace std;
-#define FASTIO() ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-
-void solve() {
-    
-}
- 
-int main() {
-    FASTIO();
-    int t = 1;
-    // cin >> t;
-    while (t--) solve();
-}   
-\end{lstlisting}
-
-\section{Algebra}
-\section{Data Structures}
-\section{Dynamic Programming}
-\section{String Processing}
-\section{Linear Algebra}
-\section{Combinatorics}
-\section{Numerical Methods}
-\section{Graphs}
-\subsection{Graph traversal}
-\subsubsection{Breadth-first search (BFS)}
+/*
 Search algorithm on graphs, the path found by bfs to any node is the shortest path to that node. 
 
 The algorithm works in $O(n + m)$ time, where $n$ is number of vertices and $m$ is the number of edges.
+*/
 
-\begin{lstlisting}
 vector<vector<int>> adj;  // adjacency list representation
 int n; // number of nodes
 int s; // source vertex
@@ -68,6 +39,4 @@ if (!used[u]) {
     cout << "Path: ";
     for (int v : path)
         cout << v << " ";
-}\end{lstlisting}
-
-\section{Miscellaneous}
+}

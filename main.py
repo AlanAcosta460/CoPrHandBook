@@ -23,18 +23,31 @@ def read_index(file):
     return index
 
 def extract_content(file):
+    flag = True
+    description = []
+    code = []
     with open(file, 'r', encoding='utf-8') as f:
         text = f.readlines()
 
-    description = text[0].split('// ', 1)[1]
+    for line in text:
+        if '*/' in line:
+            flag = False
 
-    return description, text
+        if flag:
+            description.append(line)
+        else:
+            code.append(line)
 
-def append_code(description, text):
+    return description, code
+
+def append_code(description, code):
     with open(doc_path, 'a', encoding='utf-8') as doc_file:
-        doc_file.write(f'{description}\n')
+        for line in description[1:]:
+            doc_file.write(f'{line}')
+        doc_file.write('\n')
+
         doc_file.write('\\begin{lstlisting}')
-        for line in text[1:]:
+        for line in code[1:]:
             doc_file.write(f'{line}')
         doc_file.write('\\end{lstlisting}\n\n')
 
@@ -65,17 +78,17 @@ def main():
             with open(doc_path, 'a', encoding='utf-8') as doc_file:
                 doc_file.write(f'\\subsection{{{separete_name(name)}}}\n')
             
-            path_subtheme = path_theme + file[1:]
-            index_subtheme = read_index(path_subtheme + 'index.md')
+            path_subtheme = path_theme + file[2:]
+            index_subtheme = read_index(path_subtheme)
 
             for number, (name, file) in sorted(index_subtheme.items()):
                 with open(doc_path, 'a', encoding='utf-8') as doc_file:
                     doc_file.write(f'\\subsubsection{{{separete_name(name)}}}\n')
 
-                path_subsubtheme = path_subtheme + file
-                description, text = extract_content(path_subsubtheme)
+                path_subsubtheme = path_subtheme[:-8] + file[2:]
+                description, code = extract_content(path_subsubtheme)
 
-                append_code(description, text)
+                append_code(description, code)
                 
 if __name__ == '__main__':
     main()
