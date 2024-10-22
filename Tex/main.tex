@@ -17,6 +17,10 @@
 \usepackage{amssymb}
 \usepackage{bigints}
 
+% \usepackage{paratype}\renewcommand{\familydefault}{\sfdefault}
+\usepackage{txfonts}
+% \usepackage{fouriernc}
+
 \sloppy
 \setlength{\parindent}{0cm}
 
@@ -37,7 +41,7 @@
     keywordstyle=\color[RGB]{40,40,255},                 
     numberstyle=\footnotesize\color{darkgray},           
     commentstyle=\it\color[RGB]{0,96,96},                
-    stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},   
+    stringstyle=\ttfamily\slshape\color[RGB]{128,0,0},   
     showstringspaces=false,                              
     language=c++,                                        
     morekeywords={alignas,continute,friend,register,true,alignof,decltype,goto,
@@ -65,7 +69,7 @@
             
             \vspace{0.5cm}
             \LARGE
-            A guide to C++ programming from Algorithms for Competitive Programming
+            Compilation of C++ Algorithms for Competitive Programming
             
             \vspace{1.5cm}
             \textbf{Author:} \\
@@ -79,9 +83,11 @@
         \end{center}
     \end{titlepage}
 
+    \pagenumbering{gobble}
     \tableofcontents
-
+    
     \newpage
-
+    
+    \pagenumbering{arabic}
     \import{.}{handBook.tex}
 \end{document}
